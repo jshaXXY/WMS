@@ -6,7 +6,7 @@ global $conn;
 $oID = $_GET['s'];
 $sql = "
 SELECT
-	detailID,itemName,orderBatch,unitPrice,customerName,OperatorName,orderTime
+	itemName,orderBatch,unitPrice,customerName,OperatorName,orderTime
 FROM
 	vw_orderDetail
 where orderID = $oID
@@ -22,17 +22,19 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
 </head>
 <body>
-<p><a href="addOrderDetail.html">添加物品</a></p>
+<p><a href="showOrder.php">回到订单</a></p>
+<p><a href=<?php echo 'addOrderDetail.php?id='.$oID;?>>添加物品</a></p>
 <table border="1">
     <thead>
     <tr>
-        <th>订单物品号</th>
         <th>品名</th>
         <th>订货批量</th>
         <th>订货单价</th>
         <th>客户</th>
         <th>操作员</th>
         <th>订单时间</th>
+        <th>修改</th>
+        <th>删除</th>
     </tr>
     </thead>
     <tbody>
@@ -40,7 +42,6 @@ $result = $conn->query($sql);
     if ($result)    {
         while ($rows = $result->fetch_assoc())   {
             echo "<tr>";
-            echo "<td>".$rows['detailID']."</td>";
             echo "<td>".$rows['itemName']."</td>";
             echo "<td>".$rows['orderBatch']."</td>";
             echo "<td>".$rows['unitPrice']."</td>";

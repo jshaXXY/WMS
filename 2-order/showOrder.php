@@ -5,12 +5,14 @@ global $conn;
 
 $sql = "
 SELECT
-	orderID,
+	torder.orderID,
 	tcustomer.customerName,
-	orderTime 
+	torder.orderTime,
+	vw_totalprice.price
 FROM
 	torder
-	LEFT JOIN tcustomer ON torder.orderCustomer = tcustomer.customerID";
+	LEFT JOIN tcustomer ON torder.orderCustomer = tcustomer.customerID
+	LEFT JOIN vw_totalprice ON torder.orderID = vw_totalprice.orderID";
 
 $result = $conn->query($sql);
 
@@ -29,8 +31,9 @@ $result = $conn->query($sql);
         <th>订单号</th>
         <th>客户</th>
         <th>订单时间</th>
+        <th>订单总价</th>
         <th>查看</th>
-        <th>更改</th>
+        <th>删除</th>
     </tr>
     </thead>
     <tbody>
@@ -41,9 +44,10 @@ $result = $conn->query($sql);
             echo "<td>".$rows['orderID']."</td>";
             echo "<td>".$rows['customerName']."</td>";
             echo "<td>".$rows['orderTime']."</td>";
+            echo "<td>".$rows['price']."</td>";
             $ID = $rows['orderID'];
             echo "<td>"."<a href = 'showOrderDetail.php?s=$ID'>查看</a>"."</td>";
-            echo "<td>"."<a href = 'modifyOrder.php?m=$ID'>更改</a>"."</td>";
+            echo "<td>"."<a href = 'deleteOrder.php?d=$ID'>删除</a>"."</td>";
             echo "</tr>";
         }
     }

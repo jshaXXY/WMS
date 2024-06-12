@@ -26,23 +26,30 @@ function redirect($url, $time = 0, $msg = '')
 }
 
 function fetchNameList($type, $selectName)   {
-    // $type = 'operator','customer','supplier'
+    // $type = 'operator','customer','supplier','item'
     global $conn;
     $tableName = 't'.$type;
     $typeName = $type.'Name';
     $sql = "SELECT $typeName FROM $tableName";
     $result = $conn->query($sql);
-    echo "<select name=$selectName id=$selectName>";
+    echo "<select name='$selectName' id='$selectName'>";
     while ($rows = $result->fetch_assoc())  {
-        echo "echo";
         echo "<option>";
         echo $rows[$typeName];
-        echo"</option>;";
+        echo "</option>";
     }
     echo "</select>";
 }
 
-function Name2Number()
-{
-
+function Name2Number($name, $type) {
+    $tableName = 't'.$type;
+    $numColumnName = $type."ID";
+    $nameColumnName = $type."Name";
+    global $conn;
+    $sql = "SELECT $numColumnName FROM $tableName WHERE $nameColumnName = '$name'";
+    $result = $conn->query($sql);
+    while ($rows = $result->fetch_assoc())  {
+        $num = $rows[$numColumnName];
+    }
+    return $num;
 }
