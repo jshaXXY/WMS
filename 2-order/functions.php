@@ -25,7 +25,7 @@ function redirect($url, $time = 0, $msg = '')
     }
 }
 
-function fetchNameList($type, $selectName)   {
+function fetchNameList($type, $selectName, $default = '')   {
     // $type = 'operator','customer','supplier','item'
     global $conn;
     $tableName = 't'.$type;
@@ -34,7 +34,13 @@ function fetchNameList($type, $selectName)   {
     $result = $conn->query($sql);
     echo "<select name='$selectName' id='$selectName'>";
     while ($rows = $result->fetch_assoc())  {
-        echo "<option>";
+        if ($default != '') {
+            if ($rows[$typeName] == $default)   {
+                echo "<option selected>";
+            }
+            else echo "<option>";
+        }
+        else echo "<option>";
         echo $rows[$typeName];
         echo "</option>";
     }

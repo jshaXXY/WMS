@@ -6,7 +6,7 @@ global $conn;
 $oID = $_GET['s'];
 $sql = "
 SELECT
-	itemName,orderBatch,unitPrice,customerName,OperatorName,orderTime
+	detailID,itemName,orderBatch,unitPrice,customerName,OperatorName,orderTime
 FROM
 	vw_orderDetail
 where orderID = $oID
@@ -41,6 +41,7 @@ $result = $conn->query($sql);
     <?php
     if ($result)    {
         while ($rows = $result->fetch_assoc())   {
+            $dID = $rows['detailID'];
             echo "<tr>";
             echo "<td>".$rows['itemName']."</td>";
             echo "<td>".$rows['orderBatch']."</td>";
@@ -48,6 +49,8 @@ $result = $conn->query($sql);
             echo "<td>".$rows['customerName']."</td>";
             echo "<td>".$rows['OperatorName']."</td>";
             echo "<td>".$rows['orderTime']."</td>";
+            echo "<td>"."<a href = 'detailModify.php?m=$dID'>修改</a>"."</td>";
+            echo "<td>"."<a href = 'detailDelete.php?d=$dID&oID=$oID'>删除</a>"."</td>";
             echo "</tr>";
         }
     }
