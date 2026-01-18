@@ -3,7 +3,7 @@ require_once "utils.php";
 include "connect.php";
 global $conn;
 if ($conn -> connect_error) {
-    die("服务器连接失败: " . $conn -> connect_error);
+    die("MySQL Server Connection failure.".$conn -> connect_error);
 }
 
 $username = $password = $confirm_password = "";
@@ -25,9 +25,9 @@ if (isset($_POST['sign_up_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST") {
 if (isset($_POST['sign_up_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST")    {
     if (!empty($username) && !empty($password) && !empty($confirm_password)) {
         if ($password == $confirm_password) {
-            $sql_check_username_existed = "select exists(select * from users where username = '$username') as 'is_exist'";
-            $result = $conn -> query($sql_check_username_existed);
-            $rows = $result->fetch_assoc();
+            $sql_check_username_exist = "select exists(select * from users where username = '$username') as 'is_exist'";
+            $result = $conn -> query($sql_check_username_exist);
+            $rows = $result -> fetch_assoc();
             $is_username_existed = $rows['is_exist'][0];
             if (!$is_username_existed) {
                 $hashed_password = hash('sha256', $password);
@@ -36,13 +36,13 @@ if (isset($_POST['sign_up_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST")    
                 redirect("sign_in.php", 1, "Sign up successfully, redirecting to login page.");
             }
             else
-                $sign_up_state = "Username already exists";
+                $sign_up_state = "Username already exists.";
         }
         else
             $sign_up_state = "Password and Confirm Password do not match.";
     }
     else
-        $sign_up_state = "Username and password cannot be empty";
+        $sign_up_state = "Username and password cannot be empty.";
 }
 ?>
 
