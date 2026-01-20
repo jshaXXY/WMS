@@ -8,6 +8,7 @@ if ($conn -> connect_error) {
 
 $username = $password = $confirm_password = "";
 $sign_up_state = "";
+
 # Get input content
 if (isset($_POST['sign_up_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST") {
     if (!empty($_POST["username"])) {
@@ -31,7 +32,7 @@ if (isset($_POST['sign_up_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST")    
             $is_username_existed = $rows['is_exist'][0];
             if (!$is_username_existed) {
                 $hashed_password = hash('sha256', $password);
-                $sql_insert_user = "insert into users values ('$username', '$hashed_password')";
+                $sql_insert_user = "insert into users values ('$username', '$hashed_password', 0)";
                 $conn -> query($sql_insert_user);
                 redirect("sign_in.php", 1, "Sign up successfully, redirecting to login page.");
             }
@@ -42,7 +43,7 @@ if (isset($_POST['sign_up_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST")    
             $sign_up_state = "Password and Confirm Password do not match.";
     }
     else
-        $sign_up_state = "Username and password cannot be empty.";
+        $sign_up_state = "Username or password cannot be empty.";
 }
 ?>
 

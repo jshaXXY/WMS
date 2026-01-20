@@ -5,7 +5,6 @@ function text_input($data)  {
     $data = htmlspecialchars($data);
     return $data;
 }
-
 function redirect($url, $time = 0, $msg = '')   {
     $url = str_replace(array("\n", "\r"), '', $url);
     if (empty($msg)) {

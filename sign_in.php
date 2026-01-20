@@ -30,9 +30,9 @@ if (isset($_POST['sign_in_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST")    
             $_SESSION['username'] = $username;
             $timestamp = time();
             # Create sign in log file
-            $log_file_path = "logs/".$username.'_'.$timestamp.'.log';
-            $_SESSION['log_file_path'] = $log_file_path;
-            fopen($log_file_path, "a");
+            $log_path = "logs/".$username.'_'.$timestamp.'.log';
+            $_SESSION['log_path'] = $log_path;
+            fopen($log_path, "a");
             redirect("workspace.php", 1, "Welcome, $username!");
         }
         else
