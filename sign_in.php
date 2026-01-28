@@ -30,10 +30,10 @@ if (isset($_POST['sign_in_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST")    
             $_SESSION['username'] = $username;
             $timestamp = time();
             # Create sign in log file
-            $log_path = "logs/".$username.'_'.$timestamp.'.log';
+            $log_path = "E:/Project/WMS/logs/".$username.'.log';
             $_SESSION['log_path'] = $log_path;
-            fopen($log_path, "a");
-            redirect("workspace.php", 1, "Welcome, $username!");
+            write_log($log_path, "Logged in at ".$timestamp);
+            redirect("workspace.php", 2, "Welcome, $username!");
         }
         else
             $sign_in_state = "Username or password is incorrect.";

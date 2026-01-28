@@ -27,11 +27,13 @@ $_SESSION['authorization_level'] = $authorization_level;
     </style>
     <body>
         <p>
+            <a href="index.html">Log out</a><br>
+            <a href="change_password.php">Change Password</a><br>
             Welcome, <?php echo $username; ?>!<br>
             Authorization Level: <?php echo $authorization_level; ?>
         </p>
         <p>
-            <a href="user_management.php" <?php if ($authorization_level != 5) echo "class='unclickable'"?>>User Management</a>
+            <a href="user_management/user_management.php" <?php if ($authorization_level != 5) echo "class='unclickable'"?>>User Management</a>
         </p>
     </body>
 </html>
