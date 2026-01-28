@@ -1,14 +1,148 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WMS - Home</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow: hidden;
+        }
+
+        /* ✅ Blurred background layer */
+        .bg-blur {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            background: url("assets/pics/homepage_bg.png") no-repeat center center;
+            background-size: cover;
+
+            filter: blur(5px);
+            transform: scale(1.1);
+            z-index: 0;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 420px;
+            padding: 36px;
+            border-radius: 14px;
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(6px);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #111827;
+            margin: 0 0 10px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            margin: 0 0 24px;
+            line-height: 1.6;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 280px;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+
+            background: #4f46e5;
+            color: white;
+            transition: 0.2s;
+            text-align: center;
+            display: block;
+        }
+
+        .btn:hover {
+            background: #4338ca;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #4f46e5;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-outline:hover {
+            background: #f3f4f6;
+        }
+
+        .footer {
+            margin-top: 18px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+    </style>
 </head>
+
 <body>
-<p>
-    Welcome to WMS!<br>
-    by Xiaoyu & Quansen<br>
-    <a href = "sign_in.php">sign in</a><br>
-    <a href = "sign_up.php">sign up</a>
-</p>
+<!-- Background -->
+<div class="bg-blur"></div>
+<div class="bg-overlay"></div>
+
+<!-- Content -->
+<div class="container">
+    <div class="card">
+        <h1 class="title">Welcome to WMS</h1>
+        <p class="subtitle">
+            Warehouse Management System<br>
+            by <b>Xiaoyu</b> & <b>Quansen</b>
+        </p>
+
+        <div class="btn-group">
+            <a class="btn" href="sign_in.php">Sign In</a>
+            <a class="btn btn-outline" href="sign_up.php">Sign Up</a>
+        </div>
+
+        <div class="footer">
+            © 2026 WMS Project
+        </div>
+    </div>
+</div>
 </body>
 </html>
