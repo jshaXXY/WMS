@@ -26,7 +26,7 @@ if (isset($_POST['modify_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modify User</title>
 
-    <!-- ✅ Use shared CSS -->
+    <!-- Use shared CSS -->
     <link rel="stylesheet" href="../css/user.css">
 
     <style>
