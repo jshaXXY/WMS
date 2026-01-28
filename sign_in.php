@@ -43,31 +43,39 @@ if (isset($_POST['sign_in_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST")    
 }
 ?>
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>sign in</title>
-    </head>
-    <p>
-        <a href="index.html">Back to Homepage</a>
-    </p>
-    <p>
-        SIGN IN:
-    </p>
-    <form name="sign_up" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <p>
-            Username:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+<div class="card">
+    <h1>Welcome Back</h1>
+
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <div class="form-group">
+            <label>Username</label>
             <input type="text" name="username" value="<?php echo $username; ?>">
-        </p>
-        <p>
-            Password:
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
             <input type="password" name="password" value="<?php echo $password; ?>">
-        </p>
-        <p>
-            <input type="submit" name="sign_in_submit" value="Sign in">
-        </p>
+        </div>
+
+        <input class="btn" type="submit" name="sign_in_submit" value="Sign In">
     </form>
-    <p>
-        <?php echo $sign_in_state; ?>
-    </p>
+
+    <?php if (!empty($sign_in_state)) { ?>
+        <div class="message"><?php echo $sign_in_state; ?></div>
+    <?php } ?>
+
+    <div class="back-link">
+        <a href="index.html">← Back to Homepage</a>
+    </div>
+</div>
+</body>
 </html>

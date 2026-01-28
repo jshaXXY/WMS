@@ -47,37 +47,44 @@ if (isset($_POST['sign_up_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST")    
 }
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>sign up</title>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="css/auth.css">
 </head>
+
 <body>
-    <p>
-        <a href="index.html">Back to Homepage</a>
-    </p>
-    <p>
-        SIGN UP:
-    </p>
-    <form name="sign_up" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <p>
-            Username:
+<div class="card">
+    <h1>Create Account</h1>
+
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <div class="form-group">
+            <label>Username</label>
             <input type="text" name="username" value="<?php echo $username; ?>">
-        </p>
-        <p>
-            Password:
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
             <input type="password" name="password" value="<?php echo $password; ?>">
-        </p>
-        <p>
-            Confirm Password:
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
             <input type="password" name="confirm_password" value="<?php echo $confirm_password; ?>">
-        </p>
-        <p>
-            <input type="submit" name="sign_up_submit" value="Sign up">
-        </p>
+        </div>
+
+        <input class="btn" type="submit" name="sign_up_submit" value="Sign Up">
     </form>
-    <p>
-        <?php echo $sign_up_state; ?>
-    </p>
+
+    <?php if (!empty($sign_up_state)) { ?>
+        <div class="message"><?php echo $sign_up_state; ?></div>
+    <?php } ?>
+
+    <div class="back-link">
+        <a href="index.html">← Back to Homepage</a>
+    </div>
+</div>
 </body>
 </html>
