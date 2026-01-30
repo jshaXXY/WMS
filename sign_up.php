@@ -40,7 +40,7 @@ if (isset($_POST['sign_up_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST")    
                 $sign_up_state = "Username already exists.";
         }
         else
-            $sign_up_state = "Password and Confirm Password do not match.";
+            $sign_up_state = "Password and confirm password do not match.";
     }
     else
         $sign_up_state = "Username or password cannot be empty.";

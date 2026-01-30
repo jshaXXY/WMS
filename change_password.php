@@ -50,13 +50,13 @@ if (isset($_POST['change_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
                 redirect("workspace.php", 2, "Change password successfully.");
             } else {
-                $change_state = "Original Password not correct.";
+                $change_state = "Original password is not correct.";
             }
         } else {
             $change_state = "New passwords do not match.";
         }
     } else {
-        $change_state = "Original Password and New Password cannot be empty.";
+        $change_state = "Original password or new password cannot be empty.";
     }
 }
 ?>
@@ -68,7 +68,6 @@ if (isset($_POST['change_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Password</title>
 
-    <!-- ✅ Use your shared auth.css -->
     <link rel="stylesheet" href="css/auth.css">
 </head>
 

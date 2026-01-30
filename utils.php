@@ -84,3 +84,14 @@ function write_log($path, $msg) {
     $file = fopen($path, "a");
     fwrite($file, $msg."\n");
 }
+function select_options($type, $id, $name) {
+    global $conn;
+    echo "<select id=$id name=$name>";
+    echo "<option value='' selected>null</option>";
+    $sql_inquiry = "select * from $type";
+    $result = $conn->query($sql_inquiry);
+    while ($row = $result->fetch_assoc())   {
+        echo "<option value=$row[id]>".$row[$type."_name"]."</option>";
+    }
+    echo "</select>";
+}

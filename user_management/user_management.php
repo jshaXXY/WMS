@@ -6,11 +6,11 @@ $username = $_SESSION['username'];
 
 # exit if not authorized
 $authorization_level = $_SESSION['authorization_level'];
-if ($authorization_level != '5') {
+if ($authorization_level < 4) {
     exit();
 }
 
-$sql_query = "select username, `authorization level` from users where username != '$username'";
+$sql_query = "select username, `authorization_level` from users where `authorization_level` != 5 and username != '$username'";
 $result = $conn->query($sql_query);
 ?>
 
@@ -45,7 +45,7 @@ $result = $conn->query($sql_query);
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row['username'] . "</td>";
-                echo "<td>" . $row['authorization level'] . "</td>";
+                echo "<td>" . $row['authorization_level'] . "</td>";
                 echo "<td><a class='btn btn-modify' href='user_modify.php?u=$row[username]'>MODIFY</a></td>";
                 echo "<td><a class='btn btn-delete' href='user_delete.php?u=$row[username]'>DELETE</a></td>";
                 echo "</tr>";

@@ -9,7 +9,7 @@ $log_path = $_SESSION['log_path'];
 
 if (isset($_POST['modify_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $level = $_POST['level'];
-    $sql_modify = "update users set `authorization level`= $level where username = '$username'";
+    $sql_modify = "update users set `authorization_level`= $level where username = '$username'";
     $conn->query($sql_modify);
 
     $timestamp = time();
@@ -26,11 +26,9 @@ if (isset($_POST['modify_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modify User</title>
 
-    <!-- Use shared CSS -->
     <link rel="stylesheet" href="../css/user.css">
 
     <style>
-        /* Extra form styling (small & clean) */
         .form-card {
             background: white;
             border: 1px solid #e5e7eb;
@@ -106,7 +104,6 @@ if (isset($_POST['modify_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="5">5</option>
                 </select>
 
                 <input class="btn btn-modify btn-submit" type="submit" name="modify_submit" value="Modify">
@@ -115,7 +112,7 @@ if (isset($_POST['modify_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="note">
-        Tip: Authorization level 5 is usually the highest admin privilege.
+        Tip: Authorization level 0 is banned from doing anything.
     </div>
 </div>
 </body>
