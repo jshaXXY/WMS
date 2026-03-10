@@ -60,18 +60,23 @@ if (isset($_POST['search_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (isset($_POST["is_instock"]) && $_POST["is_instock"] != '') {
         $is_instock = $_POST["is_instock"];
-        $sql_is_instock = " and is_instock = '$is_instock'";
+        if ($is_instock == 1) {
+            $sql_is_instock = " and quantity > 0";
+        }
+        else    {
+            $sql_is_instock = " and quantity = 0";
+        }
     }
 
     $sql_inquiry =
         "select item.id,
                 item.sku,
-                item.name,
+                item.item_name,
                 supplier.supplier_name,
                 customer.customer_name,
                 item.in_stock_time,
                 item.out_stock_time,
-                item.is_instock
+                item.quantity
         from item
                 left join supplier on item.supplier=supplier.id
                 left join customer on item.customer=customer.id
@@ -96,7 +101,7 @@ if (isset($_POST['search_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container">
 
     <div class="header">
-        <h1>History Stock</h1>
+        <h1>Current Stock</h1>
         <a class="back-btn" href="../workspace.php">← Back to Workspace</a>
     </div>
 
@@ -157,7 +162,7 @@ if (isset($_POST['search_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
                     <select id="is_instock" name="is_instock">
                         <option value='' selected>null</option>
                         <option value=1>In stock</option>
-                        <option value=0>Out of stock</option>
+                        <option value=0>Not in stock</option>
                     </select>
                 </div>
 
@@ -182,7 +187,7 @@ if (isset($_POST['search_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
                 <th>Customer</th>
                 <th>In Stock Time</th>
                 <th>Out Stock Time</th>
-                <th>Is in stock</th>
+                <th>Quantity</th>
             </tr>
             </thead>
 
@@ -193,12 +198,12 @@ if (isset($_POST['search_submit']) && $_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "<tr>";
                     echo "<td>" . $row['id'] . "</td>";
                     echo "<td>" . $row['sku'] . "</td>";
-                    echo "<td>" . $row['name'] . "</td>";
+                    echo "<td>" . $row['item_name'] . "</td>";
                     echo "<td>" . $row['supplier_name'] . "</td>";
                     echo "<td>" . $row['customer_name'] . "</td>";
                     echo "<td>" . $row['in_stock_time'] . "</td>";
                     echo "<td>" . $row['out_stock_time'] . "</td>";
-                    echo "<td>" . $row['is_instock'] . "</td>";
+                    echo "<td>" . $row['quantity'] . "</td>";
                     echo "</tr>";
                 }
             }

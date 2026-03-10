@@ -32,7 +32,7 @@ if (isset($_POST['sign_up_submit']) &&  $_SERVER["REQUEST_METHOD"] = "POST")    
             $is_username_existed = $rows['is_exist'][0];
             if (!$is_username_existed) {
                 $hashed_password = hash('sha256', $password);
-                $sql_insert_user = "insert into users values ('$username', '$hashed_password', 0)";
+                $sql_insert_user = "insert into users(username, hashed_password, authorization_level) values ('$username', '$hashed_password', 0)";
                 $conn -> query($sql_insert_user);
                 redirect("sign_in.php", 2, "Sign up successfully, redirecting to login page.");
             }
