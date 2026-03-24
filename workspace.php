@@ -35,8 +35,12 @@ $_SESSION['authorization_level'] = $authorization_level;
         <p>
             <a href="user_management/user_management.php" <?php if ($authorization_level < 4) echo "class='unclickable'"?>>User Management</a><br>
 <!--            <a href="stock_management/show_stock.php">Show Stock</a><br>-->
-            <a href="stock_management/stock.php" <?php if ($authorization_level < 2) echo "class='unclickable'"?>>Current Stock</a><br>
+            <a href="stock_management/stock.php" <?php if ($authorization_level < 1) echo "class='unclickable'"?>>Current Stock</a><br>
             <a href="order_management/order.php" <?php if ($authorization_level < 3) echo "class='unclickable'"?>>Order Management</a><br>
+            <a href="customer_supplier_management/customer_management.php" <?php if ($authorization_level < 3) echo "class='unclickable'"?>>Customer Management</a><br>
+            <a href="customer_supplier_management/supplier_management.php" <?php if ($authorization_level < 3) echo "class='unclickable'"?>>Supplier Management</a><br>
+            <a href="in_out_stock/in_stock.php" <?php if ($authorization_level < 1) echo "class='unclickable'"?>>In Stock</a><br>
+            <a href="in_out_stock/out_stock.php" <?php if ($authorization_level < 1) echo "class='unclickable'"?>>Out Stock</a><br>
         </p>
         <p>
             Website still constructing ...
