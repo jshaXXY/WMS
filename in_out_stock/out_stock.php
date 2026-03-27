@@ -219,7 +219,7 @@ function loadOrderDetails() {
                 document.getElementById('quantity_display').value = data.quantity;
                 document.getElementById('out_stock_item').value = data.item_id;
                 document.getElementById('out_stock_customer').value = data.customer_id;
-
+                document.getElementById('out_stock_quantity').value = data.quantity;
                 submitBtn.disabled = !data.can_submit;
             }
         })
